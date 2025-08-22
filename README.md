@@ -29,7 +29,7 @@ The tool demonstrates practical use of Java’s networking and I/O libraries, an
 Compile the scanner with:
 
 ```bash
-javac PortScanner.java
+javac Main.java
 ```
 
 ## Usage
@@ -37,81 +37,7 @@ javac PortScanner.java
 ### Basic Scan (common ports)
 
 ```bash
-java PortScanner <target>
-```
-
-Example:
-
-```bash
-java PortScanner scanme.nmap.org
-```
-
-### Basic Scan with Report File
-
-```bash
-PortScanner.basicScan("scanme.nmap.org", "report.txt");
-```
-
-### Intense Scan (ports 1–1024)
-
-```bash
-PortScanner.intenseScan("192.168.1.1");
-```
-
-### Intense Scan with Report File
-
-```bash
-PortScanner.intenseScan("192.168.1.1", "full_report.txt");
-```
-
-### Banner Grabbing
-
-```java
-PortScanner.grabBanner("93.184.216.34", 80);
-```
-
-### HTTP Header Security Check
-
-```java
-PortScanner.checkHTTPHeaders("http://example.com");
-```
-
-### Directory Brute Forcing
-
-```java
-List<String> wordlist = List.of("admin", "login", "config", "uploads");
-PortScanner.bruteForceDirectories("http://example.com", wordlist);
-```
-
-### SSL Certificate Information
-
-```java
-PortScanner.getSSLCertificate("example.com", 443);
-```
-
-## Example Output
-
-```
-Target Domain: scanme.nmap.org
-Resolved IP: 45.33.32.156
- [+] Port 22 (SSH) is OPEN
- [+] Port 80 (HTTP) is OPEN
-
-[HTTP Security Header Check]
- [-] Content-Security-Policy is MISSING
- [+] Strict-Transport-Security is PRESENT
- [-] X-Content-Type-Options is MISSING
- [-] X-Frame-Options is MISSING
-
-[Cookie Security Check]
- Cookie: PHPSESSID
-  [+] Secure flag present
-  [-] Missing HttpOnly flag
-
-[SSL Certificate]
- Subject: CN=example.com
- Issuer: CN=R3, O=Let's Encrypt, C=US
- Expiry: Sat Dec 21 23:59:59 UTC 2025
+java Main
 ```
 
 ## Notes
