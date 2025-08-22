@@ -1,75 +1,97 @@
-Java Port Scanner (Still under development)
-Overview
+# Java Port Scanner (under development)
+
+## Overview
 
 This project is a feature-rich port scanner written in Java.
 It can be used to discover open ports, resolve hostnames, analyze HTTP headers, grab SSL certificate information, and perform light web directory brute forcing.
 
 The tool demonstrates practical use of Java’s networking and I/O libraries, and can generate both console and file-based reports.
 
-Features
+## Features
 
-Host resolution: Resolves target hostname and IP.
+* **Host resolution**: Resolves target hostname and IP.
+* **Basic port scan**: Scans common well-known services (FTP, SSH, HTTP, HTTPS, MySQL, RDP, etc.).
+* **Intense scan**: Scans all ports from 1 to 1024.
+* **Banner grabbing**: Attempts to read service banners for open ports.
+* **HTTP header security checks**: Tests for headers like CSP, HSTS, X-Content-Type-Options, X-Frame-Options.
+* **Cookie security analysis**: Detects presence of `Secure` and `HttpOnly` flags.
+* **SSL certificate inspection**: Retrieves subject, issuer, and expiration date from HTTPS servers.
+* **Directory brute forcing**: Checks for common web paths based on a supplied wordlist.
+* **Report saving**: Optionally writes scan results to a file.
 
-Basic port scan: Scans common well-known services (FTP, SSH, HTTP, HTTPS, MySQL, RDP, etc.).
+## Requirements
 
-Intense scan: Scans all ports from 1 to 1024.
+* Java 11 or higher
+* Internet connection to reach the target host
 
-Banner grabbing: Attempts to read service banners for open ports.
-
-HTTP header security checks: Tests for headers like CSP, HSTS, X-Content-Type-Options, X-Frame-Options.
-
-Cookie security analysis: Detects presence of Secure and HttpOnly flags.
-
-SSL certificate inspection: Retrieves subject, issuer, and expiration date from HTTPS servers.
-
-Directory brute forcing: Checks for common web paths based on a supplied wordlist.
-
-Report saving: Optionally writes scan results to a file.
-
-Requirements
-
-Java 11 or higher
-
-Internet connection to reach the target host
-
-Compilation
+## Compilation
 
 Compile the scanner with:
 
+```bash
 javac PortScanner.java
+```
 
-Usage
-Basic Scan (common ports)
+## Usage
+
+### Basic Scan (common ports)
+
+```bash
 java PortScanner <target>
-
+```
 
 Example:
 
+```bash
 java PortScanner scanme.nmap.org
+```
 
-Basic Scan with Report File
+### Basic Scan with Report File
+
+```bash
 PortScanner.basicScan("scanme.nmap.org", "report.txt");
+```
 
-Intense Scan (ports 1–1024)
+### Intense Scan (ports 1–1024)
+
+```bash
 PortScanner.intenseScan("192.168.1.1");
+```
 
-Intense Scan with Report File
+### Intense Scan with Report File
+
+```bash
 PortScanner.intenseScan("192.168.1.1", "full_report.txt");
+```
 
-Banner Grabbing
+### Banner Grabbing
+
+```java
 PortScanner.grabBanner("93.184.216.34", 80);
+```
 
-HTTP Header Security Check
+### HTTP Header Security Check
+
+```java
 PortScanner.checkHTTPHeaders("http://example.com");
+```
 
-Directory Brute Forcing
+### Directory Brute Forcing
+
+```java
 List<String> wordlist = List.of("admin", "login", "config", "uploads");
 PortScanner.bruteForceDirectories("http://example.com", wordlist);
+```
 
-SSL Certificate Information
+### SSL Certificate Information
+
+```java
 PortScanner.getSSLCertificate("example.com", 443);
+```
 
-Example Output
+## Example Output
+
+```
 Target Domain: scanme.nmap.org
 Resolved IP: 45.33.32.156
  [+] Port 22 (SSH) is OPEN
@@ -90,17 +112,17 @@ Resolved IP: 45.33.32.156
  Subject: CN=example.com
  Issuer: CN=R3, O=Let's Encrypt, C=US
  Expiry: Sat Dec 21 23:59:59 UTC 2025
+```
 
-Notes
+## Notes
 
-Running scans against systems you do not own or lack explicit permission to test may be illegal.
+* Running scans against systems you do not own or lack explicit permission to test may be illegal.
+* The tool is intended for **educational and security research purposes only**.
+* Some checks (like banner grabbing or brute forcing) may trigger intrusion detection systems.
+* Directory brute forcing requires you to supply your own wordlist.
 
-The tool is intended for educational and security research purposes only.
+## License
 
-Some checks (like banner grabbing or brute forcing) may trigger intrusion detection systems.
+This project is licensed under the MIT License.
 
-Directory brute forcing requires you to supply your own wordlist.
-
-License
-
-This project is licensed under the MIT License
+---
