@@ -34,7 +34,7 @@ javac Main.java
 
 ## Usage
 
-### Basic Scan (common ports)
+### Run the CLI 
 
 ```bash
 java Main
